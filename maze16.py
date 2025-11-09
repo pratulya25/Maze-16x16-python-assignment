@@ -3,18 +3,16 @@ import random
 
 N = 16
 m = np.arange(1, N*N + 1).reshape(N, N)
-
 print(m)
-
 # generate random blocked cells
-b = 50
+b = 20
 block_cells = set()
 while len(block_cells) < b:
     i = random.randint(0, N-1)
     j = random.randint(0, N-1)
     block_cells.add((i, j))
 
-# ensure start and end are not blocked
+#start and end are not blocked
 block_cells.discard((0, 0))
 block_cells.discard((15, 15))
 
@@ -39,14 +37,12 @@ visited = np.zeros((N, N), dtype=int)
 shortest_path = None
 shortest_len  = float('inf')
 
-
 def move(i, j, direction):
     if direction == "north": return i-1, j
     if direction == "south": return i+1, j
     if direction == "west":  return i, j-1
     if direction == "east":  return i, j+1
-
-
+        
 def search(i, j, path):
     global shortest_path, shortest_len
     
@@ -75,7 +71,6 @@ def search(i, j, path):
 
     visited[i][j] = 0
     path.pop()
-
 
 search(start[0], start[1], [])
 
